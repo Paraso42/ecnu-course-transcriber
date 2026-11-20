@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------- 个人数据（绝不入库）
+# 浏览器登录态：里面有 cookie 与浏览器保存的密码，泄露等于账号泄露
+edge-profile/
+
+# 课程产出：录音、转写、官方字幕、课件截图（体积大且含个人学习内容）
+outputs/
+courseware/
+
+# 运行期临时产物
+captures/
+logs/
+_logs/
+.playwright-mcp/
+pipeline/_gen/
+__pycache__/
+*.pyc
+
+# 会话清单：含签名直链（带时效的 token），不要提交
+sessions*.json
+
+# 本机配置（路径、端口等个性化设置）
+config.json
+
+# 依赖
+node_modules/
+
+# 杂项
+*.log
+.DS_Store
+Thumbs.db

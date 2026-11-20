@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  syntax:
+    name: 语法检查 (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Python 语法
+        run: python -m compileall -q .
+
+      - name: JS 语法
+        shell: bash
+        run: |
+          fail=0
+          for f in *.js pipeline/*.js probes/*.js; do
+            node --check "$f" || fail=1
+          done
+          exit $fail
+
+      - name: 无配置时的自检（应给出指引并以 2 退出）
+        shell: bash
+        run: |
+          set +e
+          python pipeline/run.py check
+          code=$?
+          set -e
+          test "$code" = "2" || { echo "check 在缺依赖时应以退出码 2 结束，实际 $code"; exit 1; }
+
+      - name: 空仓库时 overview / prune 应优雅退出
+        shell: bash
+        run: |
+          python pipeline/run.py overview
+          python pipeline/run.py prune

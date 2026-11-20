@@ -1,0 +1,5 @@
+# 统一按 LF 存库；Windows 专属脚本保留 CRLF
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf

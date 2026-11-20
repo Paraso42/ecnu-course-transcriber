@@ -1,0 +1,17 @@
+{
+  "_comment": "复制为 config.json 后按本机情况修改。config.json 不进版本库。",
+
+  "asr_home": "D:/path/to/sherpa-onnx-sense-voice",
+  "asr_bin": "bin/sherpa-onnx-offline.exe",
+  "asr_model": "model/model.int8.onnx",
+  "asr_tokens": "model/tokens.txt",
+  "asr_language": "zh",
+
+  "playwright_core": "",
+  "edge_path": "",
+  "cdp_port": 9222,
+  "profile_dir": "edge-profile",
+
+  "outputs_dir": "outputs",
+  "courseware_dir": "courseware"
+}

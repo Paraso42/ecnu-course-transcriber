@@ -1,0 +1,13 @@
+{
+  "name": "ecnu-course-transcriber",
+  "version": "1.0.0",
+  "private": true,
+  "description": "华东师范大学课程录播 → 音频 + 转写文本（可选平台官方字幕/总结与 AI 课件切片）",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright-core": "^1.40.0"
+  }
+}
